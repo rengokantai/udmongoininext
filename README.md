@@ -7,9 +7,11 @@ db.coll.find().explain()
 
 compound key index and multi key index  
 compound:
+```
 db.coll.createIndex({"a":1,"b":1})
 multiple:(for multi layer data)  
 db.coll.createIndex({"person.name":1})
+```
 
 text indexes
 ```
@@ -38,3 +40,33 @@ db.coll.createIndex({"fieldname":"hashed"})
 ```
 
 
+unique
+```
+db.coll.createIndex({"person.name":1},{unique:true})
+```
+sparse
+```
+db.coll.createIndex({"person.name":1},{sparse:true})
+```
+
+TTL
+```
+db.coll.createIndex({"person.name":1},{"expireAfterSeconds":10})
+```
+
+other index meth
+```
+db.coll.getIndexes();
+db.system.indexes.find()
+db.coll.totalIndexSize()
+```
+
+capped
+```
+db.createCollection("a",{capped:true,size:1000,max:5})       //max indexed doc=5
+db.c.isCapped()
+```
+convert:
+```
+db.runCommand({"convertToCapped":"a",size:100,"max":5})
+```
