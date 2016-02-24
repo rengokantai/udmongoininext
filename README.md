@@ -70,3 +70,26 @@ convert:
 ```
 db.runCommand({"convertToCapped":"a",size:100,"max":5})
 ```
+
+aggre pipe
+```
+db.coll.aggregate({$match:{"f":"A"}})
+```
+
+project (rename field)
+```
+db.coll.aggregate({$project:{"newfield":"$oldfield"}},{$sort:{"newfield":1}})
+```
+
+group by number of id:(the output will be determined by $group)
+```
+db.coll.aggregate({$project:{"field":1}},{$group:{"_id":"field"},{$sort:{"_id":1}})
+```
+
+distinct,count,group
+```
+db.runCommand({"distinct":"collname","key":"finame"})
+```
+
+members state:
+STARTUP STARTUP2 RECOVERING ARBITER DOWN UNKNOWN REMOVED ROLLBACK FATAL
